@@ -5,24 +5,26 @@
  */
 Ext.define('Tile.Application', {
     extend: 'Ext.app.Application',
-    
+
     name: 'Tile',
 
     stores: [
         // TODO: add global / shared stores here
     ],
-    
+
+    defaultToken : 'home',
+
+    init:function (argument) {
+        // Desabilitar os erros de Aria
+        Ext.enableAriaButtons = false;
+    },
+
     launch: function () {
         // TODO - Launch the application
     },
 
     onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
+        window.location.reload();
+
     }
 });

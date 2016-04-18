@@ -9,13 +9,50 @@ Ext.define('Tile.view.main.MainController', {
 
     alias: 'controller.main',
 
-    onItemSelected: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+    routes : {
+        'home': {
+            action: 'onHome'
+        }
     },
 
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
+    setActivePanel: function (panel, arguments) {
+
+        var me = this,
+            refs = me.getReferences(),
+            mainCard = refs.mainCardPanel,
+            mainLayout = mainCard.getLayout(),
+            routeId = panel.routeId,
+            existingItem = mainCard.child('component[routeId=' + routeId + ']'),
+            view = null;
+
+        // Saber se ja existe uma interface  criada.
+        if (!existingItem) {
+
+            view = mainCard.add(panel);
+
+            view.loadPanel(arguments);
+
+            mainLayout.setActiveItem(view);
+
+        } else {
+
+            view = existingItem;
+
+            view.updatePanel(arguments);
+
+            mainLayout.setActiveItem(view);
+
         }
+    },
+
+    onHome: function () {
+
+        var newView = Ext.create('Tile.view.home.Home', {
+            hideMode: 'offsets',
+            routeId: 'home',
+            layout: 'fit'
+        });
+
+        this.setActivePanel(newView);
     }
 });
