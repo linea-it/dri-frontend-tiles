@@ -16,10 +16,11 @@ Ext.define('Tile.view.main.Main', {
         'Ext.layout.container.Border',
         'Tile.view.main.MainController',
         'Tile.view.main.MainModel',
-        'Tile.view.main.List'
+        'Tile.view.search.SearchField'
     ],
 
     controller: 'main',
+
     viewModel: 'main',
 
     plugins: 'viewport',
@@ -45,18 +46,21 @@ Ext.define('Tile.view.main.Main', {
                 },
                 '->',
                 {
-                    iconCls: 'x-fa fa-question',
-                    // text: 'Help',
-                    tooltip: 'Help',
-                    handler: function () {
-                        Ext.create('help.Twiki', {
-                            // TODO: Usar Bind
-                            page: 'TargetsHelp',
-                            // subsection: 'Selected_Catalog'
-                            autoShow: true
-                        });
-                    }
+                    xtype: 'tile-search-field'
                 }
+                // {
+                //     iconCls: 'x-fa fa-question',
+                //     // text: 'Help',
+                //     tooltip: 'Help',
+                //     handler: function () {
+                //         Ext.create('help.Twiki', {
+                //             // TODO: Usar Bind
+                //             page: 'TargetsHelp',
+                //             // subsection: 'Selected_Catalog'
+                //             autoShow: true
+                //         });
+                //     }
+                // }
             ]
         },
         {
