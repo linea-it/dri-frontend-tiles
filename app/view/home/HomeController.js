@@ -9,10 +9,15 @@ Ext.define('Tile.view.home.HomeController', {
 
     alias: 'controller.home',
 
+    /**
+     * executada ao selecionar um release, faz o carregamento da store
+     * Datasets.
+     * @param  {object} combo  combobox para selecao dos releases
+     * @param  {object} record release selecionado
+     */
     onSelectRelease: function (combo, record) {
-        console.log('Home - onSelectRelease(%o)', record);
-
         this.loadDatasets(record);
+
     },
 
     /**
@@ -20,8 +25,6 @@ Ext.define('Tile.view.home.HomeController', {
      * @param {object} [release] Model Instancia do model Release
      */
     loadDatasets: function (release) {
-        console.log('Home - loadDatasets(%o)', release);
-
         var me = this,
             vm = this.getViewModel(),
             datasets = vm.getStore('datasets');

@@ -6,6 +6,7 @@ Ext.define('Tile.view.home.Home', {
     requires: [
         'Tile.view.home.HomeController',
         'Tile.view.home.HomeModel',
+        'Tile.view.footprint.Panel',
         'Tile.view.mosaic.Panel',
         'Tile.view.lists.Dataset'
     ],
@@ -19,6 +20,10 @@ Ext.define('Tile.view.home.Home', {
 
         Ext.apply(this, {
             items: [
+                {
+                    xtype: 'tile-footprint',
+                    title: 'Footprint'
+                },
                 {
                     xtype: 'tile-mosaic',
                     title: 'Mosaic',
