@@ -4,28 +4,86 @@ Ext.define('Tile.view.mosaic.Panel', {
     xtype: 'tile-mosaic',
 
     requires: [
-        // 'Tile.view.home.HomeController',
-        // 'Tile.view.home.HomeModel'
+        'Tile.view.mosaic.MosaicController',
+        'Tile.view.mosaic.View',
+        'common.BandFilter',
+        'Ext.PagingToolbar'
     ],
 
-    // controller: 'home',
+    controller: 'mosaic',
 
-    // viewModel: 'home',
+    config:{
+        store: null,
+        selection: null
+    },
 
-    // title: 'Home',
+    scrollable: 'vertical',
 
     initComponent: function () {
         var me = this;
 
-        // Ext.apply(this, {
-        //     items: [
-        //         {
-        //             xtype: 'targets-catalog-tree',
-        //             reference: 'CatalogTree'
-        //         }
-        //     ]
-        // });
+        Ext.apply(this, {
+            items: [
+                {
+                    xtype: 'tile-mosaic-view',
+                    reference: 'mosaicview',
+                    listeners: {
+                        scope: this
+                    },
+                    bind: {
+                        selection: '{currentDataset}'
+                    }
+                }
+            ],
+
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    dock: 'top',
+                    items: [
+                        {
+                            xtype:'bandfilter',
+                            reference: 'bandfilter',
+                            listeners: {
+                                onfilter: 'onFilterChange'
+                            }
+                        }
+                    ]
+                },
+                {
+                    xtype: 'toolbar',
+                    dock: 'bottom',
+                    items:{
+                        xtype: 'pagingtoolbar',
+                        displayInfo: true
+                    }
+                }
+
+            ]
+        });
 
         me.callParent(arguments);
+    },
+
+    setStore: function (store) {
+        this.callParent(arguments);
+
+        // bind da store com a view
+        this.down('tile-mosaic-view').bindStore(store);
+
+        // bind da store com a paginacao
+        this.down('pagingtoolbar').bindStore(store);
+
+        // Toda a vez que a store for carregada a view deve ser filtrada pela
+        // banda selecionada.
+        store.on('load', 'onLoad', this.getController());
+    },
+
+    setSelection: function (model) {
+        this.selection = model;
+
+        this.down('tile-mosaic-view').setSelection(model);
+
     }
+
 });

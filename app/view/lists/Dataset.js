@@ -15,57 +15,44 @@ Ext.define('Tile.view.lists.Dataset', {
         var me = this;
 
         Ext.apply(this, {
+            plugins: {
+                ptype: 'bufferedrenderer'
+            },
             columns: [
                 Ext.create('Ext.grid.RowNumberer'),
                 {
                     text: 'Tilename',
                     dataIndex: 'tli_tilename',
                     sortable: false,
-                    renderer: function (value, metaData, record) {
-                        return record.getTile().get('tli_tilename');
-                    },
                     width: 160
-
                 },
                 {
                     text: 'RA (deg)',
-                    dataIndex: 'tile.ra',
-                    sortable: false,
-                    renderer: function (value, metaData, record) {
-                        return record.getTile().get('tli_ra');
-                    }
+                    dataIndex: 'tli_ra',
+                    sortable: false
                 },
                 {
                     text: 'Dec (deg)',
-                    dataIndex: 'dec',
-                    sortable: false,
-                    renderer: function (value, metaData, record) {
-                        return record.getTile().get('tli_dec');
-                    }
+                    dataIndex: 'tli_dec',
+                    sortable: false
                 },
                 {
                     text: 'l (deg)',
-                    dataIndex: 'l',
-                    sortable: false,
-                    renderer: function (value, metaData, record) {
-                        return record.getTile().get('tli_l');
-                    }
+                    dataIndex: 'tli_l',
+                    sortable: false
                 },
                 {
                     text: 'b (deg)',
-                    dataIndex: 'b',
-                    sortable: false,
-                    renderer: function (value, metaData, record) {
-                        return record.getTile().get('tli_b');
-                    }
+                    dataIndex: 'tli_b',
+                    sortable: false
                 },
                 {
                     text: 'Dataset',
                     dataIndex: 'tag',
                     sortable: false,
                     renderer: function (value, metaData, record) {
-                        return Ext.data.StoreManager.lookup('Fields')
-                                    .getById(value).get('tag_display_name');
+                        // return Ext.data.StoreManager.lookup('Fields')
+                        //             .getById(value).get('tag_display_name');
                     },
                     flex: 1
                 }
@@ -74,4 +61,5 @@ Ext.define('Tile.view.lists.Dataset', {
 
         me.callParent(arguments);
     }
+
 });

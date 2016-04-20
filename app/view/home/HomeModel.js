@@ -12,12 +12,17 @@ Ext.define('Tile.view.home.HomeModel', {
     requires: [
         'Tile.store.Releases',
         'Tile.store.Datasets',
-        'Tile.model.Release'
+        'Tile.model.Release',
+        'Tile.model.Dataset'
     ],
 
     links: {
         currentRelease: {
             type: 'Tile.model.Release',
+            create: true
+        },
+        currentDataset: {
+            type: 'Tile.model.Dataset',
             create: true
         }
     },

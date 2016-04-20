@@ -21,13 +21,18 @@ Ext.define('Tile.view.home.Home', {
             items: [
                 {
                     xtype: 'tile-mosaic',
-                    title: 'Mosaic'
+                    title: 'Mosaic',
+                    bind: {
+                        store: '{datasets}',
+                        selection: '{currentDataset}'
+                    }
                 },
                 {
                     xtype: 'tile-lists-dataset',
                     title: 'List',
                     bind: {
-                        store: '{datasets}'
+                        store: '{datasets}',
+                        selection: '{currentDataset}'
                     }
                 }
             ],
