@@ -69,7 +69,6 @@ Ext.define('Tile.view.home.Home', {
                         }
                     ]
                 }
-
             ]
 
         });

@@ -6,12 +6,10 @@ Ext.define('Tile.view.home.HomeModel', {
 
     alias: 'viewmodel.home',
 
-    /**
-     * @requires Tile.store.Releases
-     */
     requires: [
         'Tile.store.Releases',
         'Tile.store.Datasets',
+        'Tile.store.Surveys',
         'Tile.model.Release',
         'Tile.model.Dataset'
     ],
@@ -30,20 +28,18 @@ Ext.define('Tile.view.home.HomeModel', {
     stores: {
         releases: {
             type: 'releases'
-            // autoLoad: true
         },
         datasets: {
             type: 'datasets'
+        },
+        surveys: {
+            type: 'surveys'
         }
         // tags: {
         //     type: 'fields',
         //     storeId: 'search-tags',
         //     autoLoad: true
         // },
-        // search: {
-        //     type: 'tag-tiles',
-        //     storeId: 'search-tiles'
-        // }
     }
 
 });
