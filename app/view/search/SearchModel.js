@@ -4,28 +4,29 @@
 Ext.define('Tile.view.search.SearchModel', {
     extend: 'Ext.app.ViewModel',
 
-    // requires: [
-    //     'Tile.store.Tiles',
-    //     'Tile.store.Releases',
-    //     'Tile.store.Fields'
-    // ],
+    requires: [
+        'Tile.store.Datasets',
+        'Tile.store.Releases',
+        'Tile.store.Tags'
+    ],
 
-    alias: 'viewmodel.search'
+    alias: 'viewmodel.search',
 
-    // stores: {
-    //     releases: {
-    //         type: 'releases',
-    //         storeId: 'search-releases',
-    //         autoLoad: true
-    //     },
-    //     tags: {
-    //         type: 'fields',
-    //         storeId: 'search-tags',
-    //         autoLoad: true
-    //     },
-    //     search: {
-    //         type: 'tag-tiles',
-    //         storeId: 'search-tiles'
-    //     }
-    // }
+    stores: {
+        releases: {
+            type: 'releases',
+            storeId: 'search-releases',
+            autoLoad: true
+        },
+        tags: {
+            type: 'tags',
+            storeId: 'search-tags',
+            autoLoad: true
+        },
+        search: {
+            type: 'datasets',
+            storeId: 'search-tiles',
+            pageSize: 0
+        }
+    }
 });

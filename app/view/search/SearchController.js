@@ -29,7 +29,6 @@ Ext.define('Tile.view.search.SearchController', {
     },
 
     search: function (searchField) {
-        console.log('search(%o)', searchField);
         var params;
 
         this.checkStores();
@@ -84,13 +83,12 @@ Ext.define('Tile.view.search.SearchController', {
     },
 
     manyTilesFound: function (store) {
-        //console.log('manyTilesFound(%o)', store);
         this.windowResults = this.createWindowResult();
         this.windowResults.show();
+
     },
 
     onlyTileFound: function (record) {
-        //console.log('onlyTileFound(%o)', record);
         this.showTileInTileDetail(record.get('id'));
 
     },
@@ -98,7 +96,6 @@ Ext.define('Tile.view.search.SearchController', {
     noTilesFound: function () {
         Ext.MessageBox.show({
             title: 'Search',
-            //iconCls: 'x-fa fa-search',
             msg: 'No matches found.',
             buttons: Ext.MessageBox.OK
         });
@@ -134,11 +131,11 @@ Ext.define('Tile.view.search.SearchController', {
     },
 
     onDbClickResult: function (view, record) {
-
         // Fechar a janela de resultados
         this.windowResults.close();
         //console.log(record)
         this.showTileInTileDetail(record.get('id'));
+
     },
 
     showTileInTileDetail: function (id) {
@@ -201,7 +198,6 @@ Ext.define('Tile.view.search.SearchController', {
     },
 
     getSearchParams: function (searchField) {
-        // console.log("TileViewerPanel - getSearchParams()");
         var value = searchField.getValue(),
             params = [],
             coordinates = [],
