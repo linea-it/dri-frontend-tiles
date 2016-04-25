@@ -8,7 +8,7 @@ Ext.define('Tile.view.footprint.Panel', {
         'Tile.view.footprint.FootprintController'
     ],
 
-    controller: 'footprint',
+    //controller: 'footprint',
 
     initComponent: function () {
         var me = this;

@@ -21,7 +21,7 @@ Ext.define('Tile.view.home.HomeController', {
         if (record.get('id') > 0) {
             this.loadDatasets(record);
 
-            this.loadImageSurveys(record);
+            this.loadSurveys(record);
         }
     },
 
@@ -44,7 +44,7 @@ Ext.define('Tile.view.home.HomeController', {
         }
     },
 
-    loadImageSurveys: function (release) {
+    loadSurveys: function (release) {
         console.log('loadImageSurveys(%o)', release);
 
         var me = this,
@@ -54,7 +54,12 @@ Ext.define('Tile.view.home.HomeController', {
         store.filter(
             [
                 {
-                    property: 'release',
+                    property: 'srv_project',
+                    value: 'DES'
+                },
+
+                {
+                    property: 'srv_release',
                     value: release.get('id')
                 }
             ]

@@ -33,7 +33,8 @@ Ext.define('Tile.view.home.HomeModel', {
             type: 'datasets'
         },
         surveys: {
-            type: 'surveys'
+            type: 'surveys',
+            autoLoad: false
         }
         // tags: {
         //     type: 'fields',
