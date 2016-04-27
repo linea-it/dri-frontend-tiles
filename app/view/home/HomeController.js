@@ -17,7 +17,6 @@ Ext.define('Tile.view.home.HomeController', {
      * @param  {object} record release selecionado
      */
     onSelectRelease: function (combo, record) {
-
         if (record.get('id') > 0) {
             this.loadDatasets(record);
 
@@ -45,8 +44,6 @@ Ext.define('Tile.view.home.HomeController', {
     },
 
     loadSurveys: function (release) {
-        console.log('loadImageSurveys(%o)', release);
-
         var me = this,
             vm = me.getViewModel(),
             store = vm.getStore('surveys');
@@ -64,33 +61,6 @@ Ext.define('Tile.view.home.HomeController', {
                 }
             ]
         );
-
-        // surveys = [
-        //     {
-        //         'id': 'stripe_rgb',
-        //         'rootUrl': 'http://10.0.10.30/dri/images/aladin/COSMOS_D04_RGB',
-        //         'name': 'survey na banda RGB',
-        //         'filter': 'rgb'
-        //     },
-        //     {
-        //         'id': 'stripe_g',
-        //         'rootUrl': 'http://10.0.10.30/dri/images/aladin/COSMOS_D04_g_out',
-        //         'name': 'survey na banda g',
-        //         'filter': 'g'
-        //     },
-        //     {
-        //         'id': 'stripe_i',
-        //         'rootUrl': 'http://10.0.10.30/dri/images/aladin/COSMOS_D04_i_out',
-        //         'name': 'survey na banda i',
-        //         'filter': 'i'
-        //     },
-        //     {
-        //         'id': 'stripe_z',
-        //         'rootUrl': 'http://10.0.10.30/dri/images/aladin/COSMOS_D04_z_out',
-        //         'name': 'survey na banda z',
-        //         'filter': 'z'
-        //     }
-        // ];
     }
 
 });
