@@ -5,8 +5,7 @@ Ext.define('Tile.view.lists.Dataset', {
 
     requires: [
         'Ext.PagingToolbar',
-        'Ext.grid.RowNumberer',
-        'Ext.grid.plugin.BufferedRenderer'
+        'Ext.grid.RowNumberer'
     ],
 
     layout: 'fit',
@@ -15,9 +14,6 @@ Ext.define('Tile.view.lists.Dataset', {
         var me = this;
 
         Ext.apply(this, {
-            plugins: {
-                ptype: 'bufferedrenderer'
-            },
             columns: [
                 Ext.create('Ext.grid.RowNumberer'),
                 {
@@ -58,6 +54,7 @@ Ext.define('Tile.view.lists.Dataset', {
                     flex: 1
                 }
             ]
+
         });
 
         me.callParent(arguments);
