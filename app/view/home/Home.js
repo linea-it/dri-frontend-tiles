@@ -41,7 +41,17 @@ Ext.define('Tile.view.home.Home', {
                     bind: {
                         store: '{datasets}',
                         selection: '{currentDataset}'
-                    }
+                    },
+                    dockedItems: [
+                        {
+                            xtype: 'pagingtoolbar',
+                            dock: 'bottom',                             
+                            displayInfo: true,
+                            bind: {
+                                store: '{datasets}'
+                            }
+                        }                
+                    ]
                 }
             ],
             dockedItems: [
