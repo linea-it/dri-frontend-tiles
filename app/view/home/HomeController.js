@@ -10,14 +10,18 @@ Ext.define('Tile.view.home.HomeController', {
     alias: 'controller.home',
 
     /**
-     * executada ao selecionar um release, faz o carregamento da store
-     * Datasets.
+     * executada ao selecionar um release.
+     * dispara o carregamento da store Datasets.
+     * dispara o carregamento da imagens usadas no Aladin.
      * @param  {object} combo  combobox para selecao dos releases
      * @param  {object} record release selecionado
      */
     onSelectRelease: function (combo, record) {
-        this.loadDatasets(record);
+        if (record.get('id') > 0) {
+            this.loadDatasets(record);
 
+            this.loadSurveys(record);
+        }
     },
 
     /**
@@ -37,6 +41,26 @@ Ext.define('Tile.view.home.HomeController', {
                 }
             ]);
         }
+    },
+
+    loadSurveys: function (release) {
+        var me = this,
+            vm = me.getViewModel(),
+            store = vm.getStore('surveys');
+
+        store.filter(
+            [
+                {
+                    property: 'srv_project',
+                    value: 'DES'
+                },
+
+                {
+                    property: 'srv_release',
+                    value: release.get('id')
+                }
+            ]
+        );
     }
 
 });

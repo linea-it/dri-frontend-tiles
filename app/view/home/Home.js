@@ -22,7 +22,10 @@ Ext.define('Tile.view.home.Home', {
             items: [
                 {
                     xtype: 'tile-footprint',
-                    title: 'Footprint'
+                    title: 'Footprint',
+                    bind: {
+                        storeSurveys: '{surveys}'
+                    }
                 },
                 {
                     xtype: 'tile-mosaic',
@@ -69,7 +72,6 @@ Ext.define('Tile.view.home.Home', {
                         }
                     ]
                 }
-
             ]
 
         });

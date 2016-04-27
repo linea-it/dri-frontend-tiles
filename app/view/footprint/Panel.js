@@ -4,7 +4,8 @@ Ext.define('Tile.view.footprint.Panel', {
     xtype: 'tile-footprint',
 
     requires: [
-        'aladin.Panel'
+        'aladin.Panel',
+        'Tile.view.footprint.FootprintController'
     ],
 
     initComponent: function () {
