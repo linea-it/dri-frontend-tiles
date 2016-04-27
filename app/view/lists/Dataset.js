@@ -51,8 +51,9 @@ Ext.define('Tile.view.lists.Dataset', {
                     dataIndex: 'tag',
                     sortable: false,
                     renderer: function (value, metaData, record) {
-                        // return Ext.data.StoreManager.lookup('Fields')
-                        //             .getById(value).get('tag_display_name');
+                        return Ext.data.StoreManager.lookup('AllTags')
+                                    .getById(value).get('tag_display_name');                      
+
                     },
                     flex: 1
                 }

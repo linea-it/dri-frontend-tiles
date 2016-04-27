@@ -26,20 +26,48 @@ Ext.define('Tile.view.home.HomeController', {
 
     /**
      * Filtra a Store Dataset de acordo com o release
-     * @param {object} [release] Model Instancia do model Release
+     * @param {object} [record] Model Instancia do model Release
      */
-    loadDatasets: function (release) {
+    loadDatasets: function (record) {
         var me = this,
+            release = record.get('id'),
             vm = this.getViewModel(),
-            datasets = vm.getStore('datasets');
+            datasets = vm.getStore('datasets'),
+            filters = [],
+            tags= [];
 
-        if (release.get('id') > 0) {
-            datasets.filter([
-                {
-                    property: 'tag',
-                    value: 47
-                }
-            ]);
+        if (release > 0) {
+
+            tags = me.tagsByRelease(release);
+
+            console.log(tags)
+
+            if (tags.length == 1) {               
+                filters.push(
+                    {
+                        property: 'tag',
+                        value: tags[0]
+                    }
+                )
+
+            } else if (tags.length > 1) {
+                filters.push(
+                    {
+                        property: 'tag',
+                        operator: 'in',
+                        value: tags
+                    }
+                )
+
+            } else {
+                console.log('Nenhum field encontrado para o release.')
+                return false;
+            }
+
+            if (filters.length > 0) {
+                datasets.filter(filters);
+                
+            }
         }
     },
 
@@ -61,6 +89,23 @@ Ext.define('Tile.view.home.HomeController', {
                 }
             ]
         );
+    },
+
+    tagsByRelease: function (release) {
+        var me = this,
+            vm = me.getViewModel(),
+            store = vm.getStore('tags'),
+            ids = [],
+            tags;
+
+        tags = store.query('tag_release', release);
+
+        tags.each(function(tag){
+            ids.push(tag.get('id'));
+
+        }, this);
+
+        return ids;
     }
 
 });
