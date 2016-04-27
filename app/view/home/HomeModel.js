@@ -11,6 +11,7 @@ Ext.define('Tile.view.home.HomeModel', {
         'Tile.store.Datasets',
         'Tile.store.Surveys',
         'Tile.model.Release',
+        'Tile.store.Tags',
         'Tile.model.Dataset'
     ],
 
@@ -29,6 +30,12 @@ Ext.define('Tile.view.home.HomeModel', {
         releases: {
             type: 'releases'
         },
+        tags: {
+            type: 'tags',
+            storeId: 'AllTags',
+            autoLoad: true,
+            remoteFilter: false,
+        },        
         datasets: {
             type: 'datasets'
         },
@@ -36,11 +43,7 @@ Ext.define('Tile.view.home.HomeModel', {
             type: 'surveys',
             autoLoad: false
         }
-        // tags: {
-        //     type: 'fields',
-        //     storeId: 'search-tags',
-        //     autoLoad: true
-        // },
+
     }
 
 });
