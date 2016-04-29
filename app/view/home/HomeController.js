@@ -21,6 +21,8 @@ Ext.define('Tile.view.home.HomeController', {
             this.loadDatasets(record);
 
             this.loadSurveys(record);
+
+            this.loadTiles(record);
         }
     },
 
@@ -37,10 +39,8 @@ Ext.define('Tile.view.home.HomeController', {
             tags= [];
 
         if (release > 0) {
-
+            // Recupera os tags em um release
             tags = me.tagsByRelease(release);
-
-            console.log(tags)
 
             if (tags.length == 1) {               
                 filters.push(
@@ -71,6 +71,10 @@ Ext.define('Tile.view.home.HomeController', {
         }
     },
 
+    /**
+     * Carrega a lista de imagens disponiveis para um release.
+     * @param {object} [record] Model Instancia do model Release
+     */
     loadSurveys: function (release) {
         var me = this,
             vm = me.getViewModel(),
@@ -91,6 +95,66 @@ Ext.define('Tile.view.home.HomeController', {
         );
     },
 
+    /**
+     * Filtra a Store Tiles de acordo com o release
+     * @param {object} [record] Model Instancia do model Release
+     */
+    loadTiles: function (record) {
+        var me = this,
+            release = record.get('id'),
+            vm = this.getViewModel(),
+            tiles = vm.getStore('tiles'),
+            tagsbyrelease = vm.getStore('tagsbyrelease'),
+            filters = [],
+            tags= [];
+
+        if (release > 0) {
+            tagsbyrelease.filter([
+                {
+                    property: 'tag_release',
+                    value: release
+                }
+            ]);
+
+
+            // Recupera os ids dos tags em um release.
+            tags = me.tagsByRelease(release);
+
+            if (tags.length == 1) {               
+                filters.push(
+                    {
+                        property: 'tag',
+                        value: tags[0]
+                    }
+                )
+
+            } else if (tags.length > 1) {
+                filters.push(
+                    {
+                        property: 'tag',
+                        operator: 'in',
+                        value: tags
+                    }
+                )
+
+            } else {
+                console.log('Nenhum field encontrado para o release.')
+                return false;
+            }
+
+            if (filters.length > 0) {
+                tiles.filter(filters);
+                
+            }
+        }
+    },
+
+
+    /**
+     * Retorna os tags que estao associados a um release
+     * @param {int} [release] Id do release
+     * @return {Array} [ids] um array com os ids dos tags encontrados
+     */
     tagsByRelease: function (release) {
         var me = this,
             vm = me.getViewModel(),

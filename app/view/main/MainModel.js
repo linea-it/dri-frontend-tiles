@@ -7,7 +7,7 @@ Ext.define('Tile.view.main.MainModel', {
     alias: 'viewmodel.main',
 
     data: {
-        name: 'DES Tiles',
+        name: 'Tile Viewer',
         desPortalLogo: 'resources/des-portal-logo.png'
     }
 
