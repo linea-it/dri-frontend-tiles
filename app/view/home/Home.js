@@ -24,7 +24,9 @@ Ext.define('Tile.view.home.Home', {
                     xtype: 'tile-footprint',
                     title: 'Footprint',
                     bind: {
-                        storeSurveys: '{surveys}'
+                        storeSurveys: '{surveys}',
+                        storeTags: '{tagsbyrelease}',
+                        storeTiles: '{tiles}'
                     }
                 },
                 {
