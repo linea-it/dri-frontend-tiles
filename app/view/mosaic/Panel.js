@@ -44,6 +44,8 @@ Ext.define('Tile.view.mosaic.Panel', {
                         {
                             xtype:'bandfilter',
                             reference: 'bandfilter',
+                            filters: ['g', 'r', 'i', 'z', 'Y', 'irg'],
+                            defaultFilter: 'irg',
                             listeners: {
                                 onfilter: 'onFilterChange'
                             }
