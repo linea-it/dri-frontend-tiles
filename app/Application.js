@@ -15,8 +15,29 @@ Ext.define('Tile.Application', {
     defaultToken : 'home',
 
     init:function (argument) {
+        console.log('INIT ------------------------------')
         // Desabilitar os erros de Aria
         Ext.enableAriaButtons = false;
+
+        // Checar se o usuario esta logado
+
+        Ext.Ajax.request({
+           url: "/dri/api?format=json",
+           success: function(response, opts) {
+                // Sucesso nao precisa fazer nada        
+           },
+           failure: function(response, opts) {
+                var pathname = window.location.pathname,
+                    hostname = window.location.hostname,
+                    location;
+
+                location = Ext.String.format('http://{0}/dri/api/api-auth/login/?next={1}', hostname, pathname);
+
+                window.location.assign(location);
+
+            }
+
+        });        
     },
 
     launch: function () {
