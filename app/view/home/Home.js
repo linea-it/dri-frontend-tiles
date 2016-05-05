@@ -68,15 +68,16 @@ Ext.define('Tile.view.home.Home', {
                         {
                             xtype: 'combobox',
                             itemId: 'cmbReleases',
+                            reference: 'cmbReleases',
                             fieldLabel: 'Release',
                             labelWidth: 50,
                             bind: {
                                 store: '{releases}',
                                 selection: '{currentRelease}'
                             },
-                            triggerAction: 'all',
+                            //triggerAction: 'all',
                             displayField: 'rls_display_name',
-                            valueField: 'tag_id',
+                            valueField: 'id',
                             width: 300,
                             listeners: {
                                 select: 'onSelectRelease'
@@ -92,9 +93,8 @@ Ext.define('Tile.view.home.Home', {
     },
 
     loadPanel: function (args) {
-        console.log('loadPanel(%o)', args);
-
         this.fireEvent('loadpanel', this);
+
     }
 
 });
