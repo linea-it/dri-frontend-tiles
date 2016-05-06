@@ -32,7 +32,7 @@ Ext.define('Tile.view.search.SearchField', {
     listeners: {
         specialkey: function (f,e) {
             if (e.getKey() == e.ENTER) {
-                f.fireEvent('search', f);
+                //f.fireEvent('search', f);
             }
         }
     },
@@ -46,7 +46,7 @@ Ext.define('Tile.view.search.SearchField', {
         search: {
             cls: 'x-form-search-trigger',
             handler: function () {
-                this.fireEvent('search', this);
+                //this.fireEvent('search', this);
             }
         }
     }
