@@ -15,7 +15,6 @@ Ext.define('Tile.Application', {
     defaultToken : 'home',
 
     init:function (argument) {
-        console.log('INIT ------------------------------')
         // Desabilitar os erros de Aria
         Ext.enableAriaButtons = false;
 
