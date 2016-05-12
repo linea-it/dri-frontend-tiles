@@ -4,7 +4,9 @@ Ext.define('Tile.view.eyeballing.Eyeballing', {
     xtype: 'eyeballing',
 
     requires: [
-        'Tile.view.eyeballing.EyeballingController'
+        'Tile.view.eyeballing.EyeballingController',
+        'Tile.view.eyeballing.EyeballingModel',
+        'Tile.view.eyeballing.Aladin'
     ],
 
     controller: 'eyeballing',
@@ -29,21 +31,20 @@ Ext.define('Tile.view.eyeballing.Eyeballing', {
                     layout: 'border',
                     items: [
                         {
-                            xtype: 'tile-footprint',
+                            xtype: 'eyeballing-aladin',
                             region: 'center',
-                            title: '',
                             bind: {
                                 storeSurveys: '{surveys}',
                                 storeTags: '{tags}',
                                 storeTiles: '{tiles}'
                             }
-                        },
-                        {
-                            xtype: 'panel',
-                            title: 'Thumbs',
-                            region: 'south',
-                            height: 200
                         }
+                        // {
+                        //     xtype: 'panel',
+                        //     title: 'Thumbs',
+                        //     region: 'south',
+                        //     height: 200
+                        // }
                     ]
                 }
             ],

@@ -1,7 +1,7 @@
-Ext.define('Tile.view.footprint.Panel', {
+Ext.define('Tile.view.eyeballing.Aladin', {
     extend: 'aladin.Aladin',
 
-    xtype: 'tile-footprint',
+    xtype: 'eyeballing-aladin',
 
     requires: [
         'aladin.Aladin'
@@ -11,7 +11,8 @@ Ext.define('Tile.view.footprint.Panel', {
         var me = this;
 
         Ext.apply(this, {
-            hideFootprint: false
+            hideFootprint: false,
+            tilesGridVisible: true
         });
 
         me.callParent(arguments);
