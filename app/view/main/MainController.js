@@ -9,13 +9,21 @@ Ext.define('Tile.view.main.MainController', {
 
     alias: 'controller.main',
 
+    requires: [
+        'Tile.view.home.Home',
+        'Tile.view.eyeballing.Eyeballing'
+    ],
+
     routes : {
         'home': {
             action: 'onHome'
+        },
+        'ebl/:release': {
+            action: 'onEyeballing'
         }
     },
 
-    setActivePanel: function (panel, arguments) {
+    setActivePanel: function (panel) {
 
         var me = this,
             refs = me.getReferences(),
@@ -54,5 +62,20 @@ Ext.define('Tile.view.main.MainController', {
         });
 
         this.setActivePanel(newView);
+    },
+
+    onEyeballing: function (release) {
+
+        console.log('onEyeballing(%o)', release);
+
+        var newView = Ext.create('Tile.view.eyeballing.Eyeballing', {
+            hideMode: 'offsets',
+            routeId: 'eyeballing',
+            layout: 'fit',
+            release: release
+        });
+
+        this.setActivePanel(newView);
     }
+
 });

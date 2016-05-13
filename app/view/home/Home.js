@@ -47,12 +47,12 @@ Ext.define('Tile.view.home.Home', {
                     dockedItems: [
                         {
                             xtype: 'pagingtoolbar',
-                            dock: 'bottom',                             
+                            dock: 'bottom',
                             displayInfo: true,
                             bind: {
                                 store: '{datasets}'
                             }
-                        }                
+                        }
                     ]
                 }
             ],
@@ -82,6 +82,14 @@ Ext.define('Tile.view.home.Home', {
                             listeners: {
                                 select: 'onSelectRelease'
                             }
+                        },
+                        {
+                            xtype: 'button',
+                            text: 'Eyeballing',
+                            handler: 'onEyeballing',
+                            bind: {
+                                disabled: '{!currentRelease}'
+                            }
                         }
                     ]
                 }
@@ -92,7 +100,7 @@ Ext.define('Tile.view.home.Home', {
         me.callParent(arguments);
     },
 
-    loadPanel: function (args) {
+    loadPanel: function () {
         this.fireEvent('loadpanel', this);
 
     }

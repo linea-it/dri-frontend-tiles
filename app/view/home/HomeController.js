@@ -36,19 +36,19 @@ Ext.define('Tile.view.home.HomeController', {
             vm = this.getViewModel(),
             datasets = vm.getStore('datasets'),
             filters = [],
-            tags= [];
+            tags = [];
 
         if (release > 0) {
             // Recupera os tags em um release
             tags = me.tagsByRelease(release);
 
-            if (tags.length == 1) {               
+            if (tags.length == 1) {
                 filters.push(
                     {
                         property: 'tag',
                         value: tags[0]
                     }
-                )
+                );
 
             } else if (tags.length > 1) {
                 filters.push(
@@ -57,16 +57,16 @@ Ext.define('Tile.view.home.HomeController', {
                         operator: 'in',
                         value: tags
                     }
-                )
+                );
 
             } else {
-                console.log('Nenhum field encontrado para o release.')
+                console.log('Nenhum field encontrado para o release.');
                 return false;
             }
 
             if (filters.length > 0) {
                 datasets.filter(filters);
-                
+
             }
         }
     },
@@ -106,7 +106,7 @@ Ext.define('Tile.view.home.HomeController', {
             tiles = vm.getStore('tiles'),
             tagsbyrelease = vm.getStore('tagsbyrelease'),
             filters = [],
-            tags= [];
+            tags = [];
 
         if (release > 0) {
             tagsbyrelease.filter([
@@ -120,13 +120,13 @@ Ext.define('Tile.view.home.HomeController', {
             // Recupera os ids dos tags em um release.
             tags = me.tagsByRelease(release);
 
-            if (tags.length == 1) {               
+            if (tags.length == 1) {
                 filters.push(
                     {
                         property: 'tag',
                         value: tags[0]
                     }
-                )
+                );
 
             } else if (tags.length > 1) {
                 filters.push(
@@ -135,16 +135,16 @@ Ext.define('Tile.view.home.HomeController', {
                         operator: 'in',
                         value: tags
                     }
-                )
+                );
 
             } else {
-                console.log('Nenhum field encontrado para o release.')
+                console.log('Nenhum field encontrado para o release.');
                 return false;
             }
 
             if (filters.length > 0) {
                 tiles.filter(filters);
-                
+
             }
         }
     },
@@ -164,12 +164,29 @@ Ext.define('Tile.view.home.HomeController', {
 
         tags = store.query('tag_release', release);
 
-        tags.each(function(tag){
+        tags.each(function (tag) {
             ids.push(tag.get('id'));
 
         }, this);
 
         return ids;
+    },
+
+    /**
+     * @method onEyeballing [description]
+     */
+    onEyeballing: function () {
+        console.log('onEyeballing()');
+        var me = this,
+            vm = me.getViewModel(),
+            current = vm.get('currentRelease'),
+            release = current.get('id'),
+            hash;
+
+        hash = 'ebl/' + release;
+
+        me.redirectTo(hash);
+
     }
 
 });
